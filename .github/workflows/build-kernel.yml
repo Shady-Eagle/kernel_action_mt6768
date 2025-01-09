@@ -164,18 +164,11 @@ jobs:
     - name: Setup KernelSU
       if: env.ENABLE_KERNELSU == 'true'
       run: |
-        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
-
+        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel 
         
-        KSU_VERSION=$(cd KernelSU && expr $(/usr/bin/git rev-list --count HEAD) + 10200)
-
-
-        echo "KSUVER=$KSU_VERSION" >> $GITHUB_ENV
-
-        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel/KernelSU
-        patch -p1 < 10_enable_susfs_for_ksu.patch
-        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
-        patch -p1 < 50_add_susfs_in_kernel.patch
+          KSU_VERSION=$(cd KernelSU && expr $(/usr/bin/git rev-list --count HEAD) + 10200)
+          
+          echo "KSUVER=$KSU_VERSION" >> $GITHUB_ENV
 
 
     - name: Setup Configuration for Kernel
