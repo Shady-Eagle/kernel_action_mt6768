@@ -173,12 +173,6 @@ jobs:
 
         echo "KSUVER=$KSU_VERSION" >> $GITHUB_ENV
 
-        git clone https://gitlab.com/simonpunk/susfs4ksu -b kernel-4.14
-
-        cp ./kernel_patches/KernelSU/10_enable_susfs_for_ksu.patch $$GITHUB_WORKSPACE/kernel_workspace/android-kernel/KernelSU/
-        cp ./kernel_patches/50_add_susfs_in_kernel-kernel-4.14.patch $GITHUB_WORKSPACE/kernel_workspace/android-kernel/
-        cp ./kernel_patches/fs/* $GITHUB_WORKSPACE/kernel_workspace/android-kernel//fs/
-        cp ./kernel_patches/include/linux/* $GITHUB_WORKSPACE/kernel_workspace/android-kernel/include/linux/
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel/KernelSU
         patch -p1 < 10_enable_susfs_for_ksu.patch
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
